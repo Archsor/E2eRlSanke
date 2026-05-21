@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { SnakeGame } from "@/lib/snakeGame";
 import { Progress } from "antd";
-
+import { Analytics } from "@vercel/analytics/next"
 const config = {
   pixelSize: 40,
   gameWidth: 10,
@@ -226,6 +226,7 @@ export default function Page() {
 
   return (
     <main>
+      <Analytics />
       {/* 炫酷磨砂加载蒙层 */}
       {loadingModel && (
         <div className="model-loading-overlay">
