@@ -1,0 +1,168 @@
+:root {
+  --bg: #0f1318;
+  --panel: #171d24;
+  --line: #25303c;
+  --text: #e9f0f6;
+  --accent: #57e389;
+  --danger: #ff5f6d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at 10% 10%, #18212b, #0f1318 45%);
+  color: var(--text);
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.shell {
+  width: min(700px, 100%);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #171d24, #12171d);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .35);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 18px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.meta {
+  font-size: 13px;
+  opacity: .85;
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 16px;
+}
+
+canvas {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #000;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--text);
+  background: #1b2430;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.status {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111822;
+}
+
+.err {
+  color: var(--danger);
+}
+
+.ok {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .stage {
+    grid-template-columns: 1fr;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+}
+
+/* 全局炫酷磨砂加载蒙层进度条样式 */
+.model-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 19, 24, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.model-loading-box {
+  width: min(400px, 80%);
+  text-align: center;
+  background: rgba(23, 29, 36, 0.9);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.model-loading-title {
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 覆盖 antd Progress 的文字颜色，确保完美契合我们的暗黑系统 */
+.model-loading-box .ant-progress-text {
+  color: var(--text) !important;
+  font-weight: 600;
+}
